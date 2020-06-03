@@ -1,5 +1,5 @@
 export default theme => ({
     container: {
-        paddingTop: 50,
+        paddingTop: 100,
     }
 })

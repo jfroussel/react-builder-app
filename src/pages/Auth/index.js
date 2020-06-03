@@ -1,69 +1,19 @@
 import React from 'react';
-import { withStyles, Container, Grid, Typography, TextField, Button } from '@material-ui/core'
+import { withStyles, Container, Grid } from '@material-ui/core'
+import Signup from './Signup'
+import Signin from './Signin'
 import styles from './styles'
 
 const Auth = props => {
-    const { classes } = props
+    const { classes, history } = props
     return (
         <Container className={classes.container}>
             <Grid container >
-                <Grid container direction="column" xs={6}>
-                    <Typography variant="h5">Register</Typography>
-                    <form  noValidate autoComplete="off">
-                       
-                            <div>
-                            <TextField
-                                id="email"
-                                label="Email"
-                                type="text"
-                            />
-                            </div>
-                            <div>
-                                <TextField
-                                    id="password"
-                                    label="Password"
-                                    type="password"
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    id="passwordConfirm"
-                                    label="Confirm Password"
-                                    type="password"
-                                />
-                            </div>
-                            <br />
-                            <div>
-                                <Button variant="outlined">Register</Button>
-                            </div>
-                           
-                       
-                   
-
-                    </form>
+                <Grid item container direction="column" xs={6} align="center" style={{borderRight: "solid 1px rgb(117, 116, 116)"}}>
+                   <Signup/>  
                 </Grid>
-                <Grid container direction="column" xs={6}>
-                    <Typography variant="h5">Sign in</Typography>
-                    <form  noValidate autoComplete="off">
-                        <div>
-                        <TextField
-                            id="email"
-                            label="Email"
-                            type="text"
-                        />
-                        </div>
-                        <div>
-                            <TextField
-                                id="password"
-                                label="Password"
-                                type="password"
-                            />
-                        </div>
-                        <br />
-                        <div>
-                            <Button variant="outlined">Sign in</Button>
-                        </div>
-                    </form>
+                <Grid item container direction="column" align="center" xs={6}  style={{}}>
+                    <Signin history={history}/>
                 </Grid>
             </Grid>
         </Container>

@@ -2,7 +2,8 @@ import {
     App,
     Auth,
     Home,
-    Projects 
+    Projects,
+    Profile 
 } from "../../pages"
 
 export const ROUTE_AUTH = {
@@ -33,10 +34,17 @@ export const ROUTE_PROJECTS = {
     path: "/projects"
 }
 
+export const ROUTE_PROFILE = {
+    componentToRender: Profile,
+    exact: true,
+    path: "/profile"
+}
+
 export const routes = [
     ROUTE_DEFAULT,
     ROUTE_APP,
     ROUTE_AUTH,
     ROUTE_HOME,
-    ROUTE_PROJECTS
+    ROUTE_PROJECTS,
+    ROUTE_PROFILE
 ]
