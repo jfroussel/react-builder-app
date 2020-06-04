@@ -1,8 +1,7 @@
-import app from 'firebase/app'
-import 'firebase/auth'
 
+import firebase from 'firebase'
 
-const firebaseConfig = {
+const config = {
     apiKey: "AIzaSyDt7JtdnDDaULZNYhuvSBaUWWROBzRSG0U",
     authDomain: "react-builder-app-1a4cb.firebaseapp.com",
     databaseURL: "https://react-builder-app-1a4cb.firebaseio.com",
@@ -13,24 +12,28 @@ const firebaseConfig = {
     measurementId: "G-8TDYPP27KG"
   };
 
-class Firebase {
-    constructor() {
-        app.initializeApp(firebaseConfig)
-        this.auth = app.auth()
-    }
+firebase.initializeApp(config)
+const auth = firebase.auth()
+const db = firebase.firestore()
 
-    signup = (email, password) => {
-        this.auth.createUserWithEmailAndPassword(email, password)
-    }
 
-    signin = (email, password) => {
-        this.auth.signInWithEmailAndPassword(email, password)
-    }
 
-    signout = () => {
-        this.auth.signOut()
-    }
-
+function signup(email, password) {
+    return auth.createUserWithEmailAndPassword(email, password)
 }
 
-export default Firebase
+function signin(email, password){
+    return auth.signInWithEmailAndPassword(email, password)
+}
+
+function signout(){
+    return auth.signOut() 
+}
+
+
+
+export default {
+    signup,
+    signin,
+    signout
+}

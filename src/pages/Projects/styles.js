@@ -5,6 +5,8 @@ export default theme => ({
     paper: {
         height: 150,
         padding: 15,
-        backgroundColor: '#fafafa'
+        backgroundColor: '#fafafa',
+        color: '#ccc',
+        cursor: 'pointer'
     }
 })

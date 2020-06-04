@@ -11,6 +11,7 @@ import Firebase, { FirebaseContext } from './services/firebase'
 
 ReactDOM.render(
     <FirebaseContext.Provider value={ Firebase }>
+       
         <ThemeProvider theme={theme}>
         <CssBaseline/>
         <Router history={history}>
