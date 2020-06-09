@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.14.5",
     "list-react-files": "^0.2.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -19,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write 'src/**/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"

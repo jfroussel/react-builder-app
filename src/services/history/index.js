@@ -1,4 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { createBrowserHistory } = require("history")
+const { createBrowserHistory } = require("history");
 
-export default createBrowserHistory()
+export default createBrowserHistory();

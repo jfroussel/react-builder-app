@@ -1,14 +1,14 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
+import { createMuiTheme } from "@material-ui/core/styles";
+import pink from "@material-ui/core/colors/pink";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
     primary: {
-        main: '#fafafa',
+      main: "#fafafa",
     },
-      secondary: {
-        main: '#f06292',
+    secondary: {
+      main: "#f06292",
     },
   },
   status: {
