@@ -14,7 +14,7 @@ export const ROUTE_DEFAULT = {
 export const ROUTE_APP = {
   componentToRender: App,
   exact: true,
-  path: "/app",
+  path: "/app/:id",
 };
 
 export const ROUTE_HOME = {

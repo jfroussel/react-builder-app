@@ -4,7 +4,11 @@ import styles from "./styles";
 
 const Content = (props) => {
   const { classes } = props;
-  return <Grid item xs={8} className={classes.rabLayoutContent}></Grid>;
+  return (
+    <Grid item xs={8} className={classes.rabLayoutContent}>
+      App id : {props.id}{" "}
+    </Grid>
+  );
 };
 
 export default withStyles(styles)(Content);

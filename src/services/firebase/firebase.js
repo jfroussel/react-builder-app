@@ -38,6 +38,13 @@ class Firebase {
       return user;
     }
   };
+  isLoggedIn = () => {
+    this.auth.onAuthStateChanged(function (user) {
+      if (user) {
+        return true;
+      }
+    });
+  };
 
   getCollection = async (name, uid) => {
     const collection = [];
@@ -67,8 +74,8 @@ class Firebase {
       });
   };
 
-  addDataInCollection = (globalProjects, data) => {
-    this.db
+  addDataInCollection = async (globalProjects, data) => {
+    await this.db
       .collection(globalProjects)
       .doc()
       .set(data)

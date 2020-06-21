@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import fb from "firebase";
 import { FirebaseContext } from "../../services/Firebase";
 import {
   withStyles,
@@ -22,7 +21,7 @@ import {
 import styles from "./styles";
 
 const Projects = (props) => {
-  const { classes } = props;
+  const { classes, history } = props;
   const firebase = useContext(FirebaseContext);
   const [projectsList, setProjectsList] = useState(null);
   const [open, setOpen] = useState(false);
@@ -35,20 +34,17 @@ const Projects = (props) => {
     description: "",
   });
 
-  //const data = firebase.getCollection("projects", "N87ILwP6CDO48eXL1aRyBxxcJ0U2");
-
   useEffect(() => {
-    getProjectsList();
-  }, []);
+    getProjects();
+  }, [user, firebase]);
 
-  const getProjectsList = () => {
-    const uid = "N87ILwP6CDO48eXL1aRyBxxcJ0U2"
-    firebase.getCollection("projects", uid).then((d) => {
-        setProjectsList(d);
-      });
-    
+  console.log("projectsList", projectsList);
+
+  const getProjects = () => {
+    firebase.getCollection("projects", user ? user.uid : "").then((d) => {
+      setProjectsList(d);
+    });
   };
-
   const handleOpenForm = () => {
     setOpen(true);
   };
@@ -64,9 +60,9 @@ const Projects = (props) => {
     setOpen(false);
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = (id) => {
     setOpenAlert(true);
-    handleSubmitDelete(event.target.id);
+    handleSubmitDelete(id);
   };
 
   const handleClose = () => {
@@ -75,6 +71,11 @@ const Projects = (props) => {
 
   const handleSubmitDelete = (projectId) => {
     firebase.deleteDataInCollection("projects", projectId);
+  };
+
+  const handleOpenProject = (id) => {
+    history.push(`/app/${id}`);
+    console.log("open project", id);
   };
 
   return (
@@ -101,11 +102,13 @@ const Projects = (props) => {
                     {project.description}
                   </Typography>
                   <Grid>
-                    <Visibility />
+                    <Visibility onClick={() => handleOpenProject(project.id)} />
                   </Grid>
                   <Grid>
-                    {" "}
-                    <DeleteOutline id={project.id} onClick={handleDelete} />
+                    <DeleteOutline
+                      id={project.id}
+                      onClick={() => handleDelete(project.id)}
+                    />
                   </Grid>
                 </Paper>
               </Grid>

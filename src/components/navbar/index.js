@@ -20,7 +20,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import styles from "./styles";
 
-const PrimarySearchAppBar = (props) => {
+const NavBar = (props) => {
   const { classes, history } = props;
   const firebase = useContext(FirebaseContext);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,8 +28,6 @@ const PrimarySearchAppBar = (props) => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [auth, setAuth] = useState(null);
-
-  console.log("Firebase", firebase);
 
   useEffect(() => {
     let listener = firebase.auth.onAuthStateChanged((user) => {
@@ -69,8 +67,17 @@ const PrimarySearchAppBar = (props) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem
+        component={Link}
+        to={{
+          pathname: "/profile",
+        }}
+      >
+        Profile
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose} className="menuItem">
+        My account
+      </MenuItem>
       <MenuItem onClick={() => firebase.signout()}>Logout</MenuItem>
     </Menu>
   );
@@ -144,13 +151,16 @@ const PrimarySearchAppBar = (props) => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <MenuItem
+            component={Link}
+            to={{
+              pathname: "/projects",
+            }}
+          >
+            yours projects
+          </MenuItem>
 
           <div className={classes.grow} />
-          {auth && (
-            <div className={classes.connectedMessage}>
-              <em>{`Your are now connected with email : ${auth.email}`}</em>{" "}
-            </div>
-          )}
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -208,4 +218,4 @@ const PrimarySearchAppBar = (props) => {
   );
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+export default withStyles(styles)(NavBar);

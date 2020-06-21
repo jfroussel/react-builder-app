@@ -3,6 +3,9 @@ export default (theme) => ({
   grow: {
     flexGrow: 1,
   },
+  menuitem: {
+    textDecoration: "none",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
