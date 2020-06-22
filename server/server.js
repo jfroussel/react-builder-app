@@ -1,11 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('../server/routes');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const server = express();
-
+server.use(cors());
 server.use(bodyParser.json());
-server.set('json spaces', 2)
+server.set('json spaces', 2);
 routes(server);
 
 server.listen(3050, () => {

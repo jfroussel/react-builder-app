@@ -18,7 +18,7 @@ module.exports = {
             description: body.description
         });
         project.save().then(() => {
-            res.send({ result: project });
+            res.send({ project });
         });
     },
     delete(req, res) {
