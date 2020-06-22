@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { FirebaseContext } from "../../services/Firebase";
+import axios from "axios";
 import {
   withStyles,
   Container,
@@ -27,6 +28,7 @@ const Projects = (props) => {
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const user = firebase.user();
+  const BASE_URL = 'http://localhost:3050'
 
   const [project, setProject] = useState({
     uid: "",
@@ -41,9 +43,9 @@ const Projects = (props) => {
   console.log("projectsList", projectsList);
 
   const getProjects = () => {
-    firebase.getCollection("projects", user ? user.uid : "").then((d) => {
-      setProjectsList(d);
-    });
+    axios.get(`${BASE_URL}/projects`).then((projects) => {
+        setProjectsList(projects.data)
+    })
   };
   const handleOpenForm = () => {
     setOpen(true);
@@ -56,7 +58,10 @@ const Projects = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { uid } = user;
-    firebase.addDataInCollection("projects", { ...project, uid });
+    axios.post(`${BASE_URL}/project`, project).then((project) => {
+        const {data} = project;
+        console.log(data)
+    })
     setOpen(false);
   };
 

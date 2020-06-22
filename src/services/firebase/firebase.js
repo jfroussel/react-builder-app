@@ -45,47 +45,6 @@ class Firebase {
       }
     });
   };
-
-  getCollection = async (name, uid) => {
-    const collection = [];
-    await this.db
-      .collection(name)
-      .where("uid", "==", uid)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          let elm = { ...doc.data(), id: doc.id };
-          collection.push(elm);
-        });
-      });
-    return collection;
-  };
-
-  deleteDataInCollection = async (name, uid) => {
-    await this.db
-      .collection(name)
-      .doc(uid)
-      .delete()
-      .then(function () {
-        console.log("Document successfully deleted!");
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
-  };
-
-  addDataInCollection = async (globalProjects, data) => {
-    await this.db
-      .collection(globalProjects)
-      .doc()
-      .set(data)
-      .then(() => {
-        console.log("Document successfully written!");
-      })
-      .catch((error) => {
-        console.error("Error writing document: ", error);
-      });
-  };
 }
 
 export default Firebase;
